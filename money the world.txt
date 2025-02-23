@@ -1,8 +1,5 @@
--- Decompiler will be improved soon!
--- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/wyButjTMhM)
--- Decompiled on 2025-02-23 01:47:49
--- Luau version 6, Types version 3
--- Time taken: 0.023077 seconds
+
+
 
 local ReplicatedStorage_upvr = game:GetService("ReplicatedStorage")
 local Damage_upvr = ReplicatedStorage_upvr.Damage
