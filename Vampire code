@@ -1,0 +1,1074 @@
+-- Decompiler will be improved soon!
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/wyButjTMhM)
+-- Decompiled on 2025-03-17 09:39:38
+-- Luau version 6, Types version 3
+-- Time taken: 0.019623 seconds
+
+local ReplicatedStorage_upvr = game:GetService("ReplicatedStorage")
+local Damage_upvr = ReplicatedStorage_upvr.Damage
+local VampireDamage_upvr = ReplicatedStorage_upvr.VampireDamage
+local VampireFreeze_upvr = ReplicatedStorage_upvr.VampireFreeze
+local Dodge_upvr = ReplicatedStorage_upvr.Dodge
+local Anchor_upvr = ReplicatedStorage_upvr.Anchor
+local Trail_upvr = ReplicatedStorage_upvr.Trail
+local Knock_upvr = ReplicatedStorage_upvr.Knock
+local Taunt_upvr = ReplicatedStorage_upvr.Taunt
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+repeat
+	task.wait(0.2)
+until not LocalPlayer_upvr.Character or LocalPlayer_upvr.Character.Humanoid
+local Character_upvr = LocalPlayer_upvr.Character
+local Humanoid_4_upvr = Character_upvr.Humanoid
+local HumanoidRootPart_upvr_2 = Character_upvr.HumanoidRootPart
+mouse = LocalPlayer_upvr:GetMouse() -- Setting global
+cam = workspace.CurrentCamera -- Setting global
+local MobileStuff_upvr = LocalPlayer_upvr.PlayerGui.MobileStuff
+if LocalPlayer_upvr.Data.Stand.Value ~= 21 then
+else
+	ReplicatedStorage_upvr.Vampire:FireServer()
+	task.wait(0.1)
+	local var15_upvw = false
+	local var16_upvw = false
+	local Head_upvr = Character_upvr.Head
+	local Torso_upvr = Character_upvr.Torso
+	local Right_Arm_upvr = Character_upvr["Right Arm"]
+	local Left_Arm_upvr = Character_upvr["Left Arm"]
+	local Right_Leg_upvr = Character_upvr["Right Leg"]
+	local Left_Leg_upvr = Character_upvr["Left Leg"]
+	local HumanoidRootPart_upvr = Character_upvr.HumanoidRootPart
+	local Stand_upvr = Character_upvr:WaitForChild("Stand")
+	local Disabled_upvr = Character_upvr:WaitForChild("Disabled")
+	local Swing_upvr = Torso_upvr.Swing
+	local var27_upvw = false
+	local any_LoadAnimation_result1_upvr_10 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.Block)
+	local Block_upvr = ReplicatedStorage_upvr.Block
+	local Guard_upvr = Torso_upvr.Guard
+	function block() -- Line 87
+		--[[ Upvalues[7]:
+			[1]: var27_upvw (read and write)
+			[2]: var15_upvw (read and write)
+			[3]: MobileStuff_upvr (readonly)
+			[4]: any_LoadAnimation_result1_upvr_10 (readonly)
+			[5]: Block_upvr (readonly)
+			[6]: Guard_upvr (readonly)
+			[7]: Humanoid_4_upvr (readonly)
+		]]
+		if var27_upvw == true then
+		else
+			if var15_upvw == true then return end
+			var15_upvw = true
+			local var31_upvw = true
+			local function _(arg1) -- Line 92
+				--[[ Upvalues[1]:
+					[1]: var31_upvw (read and write)
+				]]
+				if arg1 == 'x' then
+					var31_upvw = false
+				end
+			end
+			MobileStuff_upvr.X.MouseButton1Up:Connect(function() -- Line 97
+				--[[ Upvalues[1]:
+					[1]: var31_upvw (read and write)
+				]]
+				var31_upvw = false
+			end)
+			any_LoadAnimation_result1_upvr_10:Play(0.1, 1, 1)
+			Block_upvr:FireServer(true)
+			var27_upvw = true
+			Guard_upvr:Play()
+			Humanoid_4_upvr.JumpPower = 0
+			repeat
+				wait()
+			until var31_upvw == false
+			Block_upvr:FireServer(false)
+			any_LoadAnimation_result1_upvr_10:Stop(0.1)
+			Humanoid_4_upvr.JumpPower = 50
+			var15_upvw = false
+			wait(3)
+			var27_upvw = false
+		end
+	end
+	local var34_upvw = false
+	local any_LoadAnimation_result1_upvr_8 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.RightPunch)
+	local any_LoadAnimation_result1_upvr_4 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.LeftPunch)
+	function punch() -- Line 116
+		--[[ Upvalues[10]:
+			[1]: var15_upvw (read and write)
+			[2]: Swing_upvr (readonly)
+			[3]: var34_upvw (read and write)
+			[4]: any_LoadAnimation_result1_upvr_8 (readonly)
+			[5]: Trail_upvr (readonly)
+			[6]: Stand_upvr (readonly)
+			[7]: Right_Arm_upvr (readonly)
+			[8]: HumanoidRootPart_upvr_2 (readonly)
+			[9]: any_LoadAnimation_result1_upvr_4 (readonly)
+			[10]: Left_Arm_upvr (readonly)
+		]]
+		if var15_upvw == true then
+		else
+			var15_upvw = true
+			Swing_upvr:Play()
+			if var34_upvw == false then
+				var34_upvw = true
+				any_LoadAnimation_result1_upvr_8:Play(0.1, 1, 1)
+				Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, true)
+				wait(0.2)
+				coroutine.resume(coroutine.create(function() -- Line 125
+					--[[ Upvalues[2]:
+						[1]: Right_Arm_upvr (copied, readonly)
+						[2]: HumanoidRootPart_upvr_2 (copied, readonly)
+					]]
+					for _ = 1, 5 do
+						wait()
+						hito(Right_Arm_upvr, Right_Arm_upvr.CFrame * CFrame.new(0, -1, 0) * CFrame.new(math.random(-0.25, 0.25), math.random(-0.25, 0.25), math.random(-0.25, 0.25)), 2.5, 7.5, 0.5, 0.25, HumanoidRootPart_upvr_2.CFrame.lookVector * 20, "rbxassetid://3370684035", 0.035, Color3.new(170, 85, 255), "rbxassetid://367499850", math.random(9, 11) / 10, 2)
+					end
+				end))
+			elseif var34_upvw == true then
+				var34_upvw = false
+				any_LoadAnimation_result1_upvr_4:Play(0.1, 1, 1)
+				Trail_upvr:FireServer(Stand_upvr.StandLarm.Trail, true)
+				wait(0.2)
+				coroutine.resume(coroutine.create(function() -- Line 136
+					--[[ Upvalues[2]:
+						[1]: Left_Arm_upvr (copied, readonly)
+						[2]: HumanoidRootPart_upvr_2 (copied, readonly)
+					]]
+					for _ = 1, 5 do
+						wait()
+						hito(Left_Arm_upvr, Left_Arm_upvr.CFrame * CFrame.new(0, -1, 0) * CFrame.new(math.random(-0.25, 0.25), math.random(-0.25, 0.25), math.random(-0.25, 0.25)), 2.5, 7.5, 0.5, 0.25, HumanoidRootPart_upvr_2.CFrame.lookVector * 20, "rbxassetid://3370684035", 0.035, Color3.new(170, 85, 255), "rbxassetid://367499850", math.random(9, 11) / 10, 2)
+					end
+				end))
+			end
+			wait(0.3)
+			var15_upvw = false
+			Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, false)
+			Trail_upvr:FireServer(Stand_upvr.StandLarm.Trail, false)
+		end
+	end
+	local var41_upvw = false
+	local any_LoadAnimation_result1_upvr_13 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.Lunge)
+	local Voice1_upvr = Torso_upvr.Voice1
+	function freeze() -- Line 149
+		--[[ Upvalues[10]:
+			[1]: var15_upvw (read and write)
+			[2]: var41_upvw (read and write)
+			[3]: Humanoid_4_upvr (readonly)
+			[4]: any_LoadAnimation_result1_upvr_13 (readonly)
+			[5]: Trail_upvr (readonly)
+			[6]: Stand_upvr (readonly)
+			[7]: Voice1_upvr (readonly)
+			[8]: Swing_upvr (readonly)
+			[9]: HumanoidRootPart_upvr (readonly)
+			[10]: var16_upvw (read and write)
+		]]
+		if var15_upvw == true then
+		else
+			if var41_upvw == true then return end
+			var41_upvw = true
+			var15_upvw = true
+			Humanoid_4_upvr.JumpPower = 0
+			any_LoadAnimation_result1_upvr_13:Play(0.1, 1, 1)
+			Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, true)
+			Trail_upvr:FireServer(Stand_upvr.StandLarm.Trail, true)
+			Voice1_upvr:Play()
+			wait(0.5)
+			Swing_upvr:Play()
+			coroutine.resume(coroutine.create(function() -- Line 161
+				--[[ Upvalues[2]:
+					[1]: Stand_upvr (copied, readonly)
+					[2]: HumanoidRootPart_upvr (copied, readonly)
+				]]
+				for _ = 1, 15 do
+					wait()
+					hito4(Stand_upvr.StandRarm, Stand_upvr.StandRarm.CFrame * CFrame.new(0, 0, 0) * CFrame.new(math.random(-0.25, 0.25), math.random(-0.25, 0.25), math.random(-0.25, 0.25)), 2.5, 75, 1, 0.75, HumanoidRootPart_upvr.CFrame.lookVector * 50)
+					hito4(Stand_upvr.StandLarm, Stand_upvr.StandRarm.CFrame * CFrame.new(0, 0, 0) * CFrame.new(math.random(-0.25, 0.25), math.random(-0.25, 0.25), math.random(-0.25, 0.25)), 2.5, 75, 1, 0.75, HumanoidRootPart_upvr.CFrame.lookVector * 50)
+				end
+			end))
+			wait(0.65)
+			if var16_upvw == false then
+				var15_upvw = false
+				Humanoid_4_upvr.JumpPower = 50
+				Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, false)
+				Trail_upvr:FireServer(Stand_upvr.StandLarm.Trail, false)
+			end
+			wait(25)
+			var41_upvw = false
+		end
+	end
+	local var46_upvw = false
+	local StandJumpSFX_upvr = Torso_upvr.StandJumpSFX
+	local any_LoadAnimation_result1_upvr_2 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.StandJump)
+	local Jump_upvr = ReplicatedStorage_upvr.Jump
+	function movement() -- Line 179
+		--[[ Upvalues[6]:
+			[1]: var15_upvw (read and write)
+			[2]: var46_upvw (read and write)
+			[3]: StandJumpSFX_upvr (readonly)
+			[4]: any_LoadAnimation_result1_upvr_2 (readonly)
+			[5]: Jump_upvr (readonly)
+			[6]: HumanoidRootPart_upvr_2 (readonly)
+		]]
+		if var15_upvw == true then
+		else
+			if var46_upvw == true then return end
+			var46_upvw = true
+			var15_upvw = true
+			StandJumpSFX_upvr:Play()
+			any_LoadAnimation_result1_upvr_2:Play(0.1, 1, 1)
+			Jump_upvr:FireServer(BrickColor.new("Institutional white"))
+			local BodyPosition = Instance.new("BodyPosition", HumanoidRootPart_upvr_2)
+			BodyPosition.maxForce = Vector3.new(100000, 100000, 100000)
+			BodyPosition.Position = HumanoidRootPart_upvr_2.CFrame * CFrame.new(0, 50, -75).Position
+			game.Debris:AddItem(BodyPosition, 1)
+			wait(1)
+			var15_upvw = false
+			wait(14)
+			var46_upvw = false
+		end
+	end
+	local var51_upvw = false
+	local any_LoadAnimation_result1_upvr_14 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.Bloodsuck)
+	function bloodsuck() -- Line 197
+		--[[ Upvalues[9]:
+			[1]: var15_upvw (read and write)
+			[2]: var51_upvw (read and write)
+			[3]: Humanoid_4_upvr (readonly)
+			[4]: any_LoadAnimation_result1_upvr_14 (readonly)
+			[5]: Trail_upvr (readonly)
+			[6]: Stand_upvr (readonly)
+			[7]: Swing_upvr (readonly)
+			[8]: HumanoidRootPart_upvr (readonly)
+			[9]: var16_upvw (read and write)
+		]]
+		if var15_upvw == true then
+		else
+			if var51_upvw == true then return end
+			var51_upvw = true
+			var15_upvw = true
+			Humanoid_4_upvr.JumpPower = 0
+			any_LoadAnimation_result1_upvr_14:Play(0.1, 1, 1)
+			Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, true)
+			wait(0.5)
+			Swing_upvr:Play()
+			coroutine.resume(coroutine.create(function() -- Line 207
+				--[[ Upvalues[2]:
+					[1]: Stand_upvr (copied, readonly)
+					[2]: HumanoidRootPart_upvr (copied, readonly)
+				]]
+				for _ = 1, 10 do
+					wait()
+					hito3(Stand_upvr.StandRarm, 2.5, 30, 0.5, 0.25, HumanoidRootPart_upvr.CFrame.lookVector * 0)
+				end
+			end))
+			wait(0.65)
+			if var16_upvw == false then
+				Humanoid_4_upvr.JumpPower = 50
+				var15_upvw = false
+				Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, false)
+			end
+			wait(10)
+			var51_upvw = false
+		end
+	end
+	local var55_upvw = false
+	local any_LoadAnimation_result1_upvr_3 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.Barrage)
+	local Rush_upvr = Torso_upvr.Rush
+	local var58_upvw = 0
+	function barrage() -- Line 224
+		--[[ Upvalues[13]:
+			[1]: var15_upvw (read and write)
+			[2]: var55_upvw (read and write)
+			[3]: MobileStuff_upvr (readonly)
+			[4]: Trail_upvr (readonly)
+			[5]: Stand_upvr (readonly)
+			[6]: any_LoadAnimation_result1_upvr_3 (readonly)
+			[7]: Rush_upvr (readonly)
+			[8]: Humanoid_4_upvr (readonly)
+			[9]: var58_upvw (read and write)
+			[10]: Right_Arm_upvr (readonly)
+			[11]: HumanoidRootPart_upvr (readonly)
+			[12]: Left_Arm_upvr (readonly)
+			[13]: Disabled_upvr (readonly)
+		]]
+		if var15_upvw == true then
+		else
+			if var55_upvw == true then return end
+			var15_upvw = true
+			var55_upvw = true
+			local var59_upvw = true
+			local function _(arg1) -- Line 230
+				--[[ Upvalues[1]:
+					[1]: var59_upvw (read and write)
+				]]
+				if arg1 == 'e' then
+					var59_upvw = false
+				end
+			end
+			MobileStuff_upvr.E.MouseButton1Up:Connect(function() -- Line 235
+				--[[ Upvalues[1]:
+					[1]: var59_upvw (read and write)
+				]]
+				var59_upvw = false
+			end)
+			Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, true)
+			Trail_upvr:FireServer(Stand_upvr.StandLarm.Trail, true)
+			any_LoadAnimation_result1_upvr_3:Play(0.1, 1, 1.5)
+			Rush_upvr:Play()
+			Humanoid_4_upvr.JumpPower = 0
+			repeat
+				var58_upvw += 0.5
+				hito2(Right_Arm_upvr, Right_Arm_upvr.CFrame * CFrame.new(0, -1, 0) * CFrame.new(math.random(-0.25, 0.25), math.random(-0.25, 0.25), math.random(-0.25, 0.25)), 2, 3.75, 0.05, 0.25, HumanoidRootPart_upvr.CFrame.lookVector * 5, "rbxassetid://285779645", 0.5, Color3.fromRGB(177, 85, 255), "rbxassetid://542443306", math.random(9, 11) / 10, math.random(9, 11) / 35)
+				hito2(Left_Arm_upvr, Left_Arm_upvr.CFrame * CFrame.new(0, -1, 0) * CFrame.new(math.random(-0.25, 0.25), math.random(-0.25, 0.25), math.random(-0.25, 0.25)), 2, 3.75, 0.05, 0.25, HumanoidRootPart_upvr.CFrame.lookVector * 5, "rbxassetid://285779645", 0.5, Color3.fromRGB(177, 85, 255), "rbxassetid://542443306", math.random(9, 11) / 10, math.random(9, 11) / 35)
+				wait(0.05)
+			until var59_upvw == false and Disabled_upvr.Value == true and 40 <= var58_upvw
+			var58_upvw = 0
+			Rush_upvr:Stop()
+			Humanoid_4_upvr.JumpPower = 50
+			any_LoadAnimation_result1_upvr_3:Stop(0.1)
+			Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, false)
+			Trail_upvr:FireServer(Stand_upvr.StandLarm.Trail, false)
+			var15_upvw = false
+			wait(5)
+			var55_upvw = false
+		end
+	end
+	local var62_upvw = false
+	local any_LoadAnimation_result1_upvr_7 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.StrongPunch)
+	local HeavyPunch_upvr = Torso_upvr.HeavyPunch
+	function strongpunch() -- Line 260
+		--[[ Upvalues[9]:
+			[1]: var15_upvw (read and write)
+			[2]: var62_upvw (read and write)
+			[3]: Trail_upvr (readonly)
+			[4]: Stand_upvr (readonly)
+			[5]: any_LoadAnimation_result1_upvr_7 (readonly)
+			[6]: HeavyPunch_upvr (readonly)
+			[7]: Swing_upvr (readonly)
+			[8]: Right_Arm_upvr (readonly)
+			[9]: HumanoidRootPart_upvr_2 (readonly)
+		]]
+		if var15_upvw == true then
+		else
+			if var62_upvw == true then return end
+			var15_upvw = true
+			var62_upvw = true
+			Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, true)
+			any_LoadAnimation_result1_upvr_7:Play(0.1, 1, 1)
+			HeavyPunch_upvr:Play()
+			wait(0.5)
+			Swing_upvr:Play()
+			coroutine.resume(coroutine.create(function() -- Line 270
+				--[[ Upvalues[2]:
+					[1]: Right_Arm_upvr (copied, readonly)
+					[2]: HumanoidRootPart_upvr_2 (copied, readonly)
+				]]
+				for _ = 1, 15 do
+					wait()
+					hito5(Right_Arm_upvr, Right_Arm_upvr.CFrame * CFrame.new(0, -1, 0) * CFrame.new(math.random(-0.25, 0.25), math.random(-0.25, 0.25), math.random(-0.25, 0.25)), 2.5, 22.5, 0.5, 0.25, HumanoidRootPart_upvr_2.CFrame.lookVector * 80, "rbxassetid://3370684035", 0.035, Color3.new(170, 85, 255), "rbxassetid://542443306", math.random(9, 11) / 11, math.random(9, 11) / 2)
+				end
+			end))
+			wait(0.65)
+			Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, false)
+			var15_upvw = false
+			wait(6.5)
+			var62_upvw = false
+		end
+	end
+	dodgecooldown = false -- Setting global
+	local any_LoadAnimation_result1_upvr = Humanoid_4_upvr:LoadAnimation(Stand_upvr.Roll)
+	function dodge() -- Line 283
+		--[[ Upvalues[6]:
+			[1]: var15_upvw (read and write)
+			[2]: Humanoid_4_upvr (readonly)
+			[3]: Character_upvr (readonly)
+			[4]: any_LoadAnimation_result1_upvr (readonly)
+			[5]: Torso_upvr (readonly)
+			[6]: Dodge_upvr (readonly)
+		]]
+		if var15_upvw == true then
+		else
+			if dodgecooldown == true then return end
+			var15_upvw = true
+			dodgecooldown = true -- Setting global
+			local var68
+			if Humanoid_4_upvr.MoveDirection ~= Vector3.new(0, 0, 0) then
+				var68 = Humanoid_4_upvr.MoveDirection
+			else
+				var68 = Character_upvr.HumanoidRootPart.CFrame.LookVector * 1
+			end
+			local Magnitude_2 = (Character_upvr.HumanoidRootPart.CFrame.LookVector * -1 - var68).Magnitude
+			local Magnitude = (Character_upvr.HumanoidRootPart.CFrame.LookVector * 1 - var68).Magnitude
+			local tbl = {}
+			table.insert(tbl, Magnitude_2)
+			table.insert(tbl, Magnitude)
+			local minimum = math.min(table.unpack(tbl))
+			if minimum == Magnitude_2 then
+			end
+			if minimum == Magnitude then
+			end
+			any_LoadAnimation_result1_upvr:Play()
+			Torso_upvr.Dodge:Play()
+			Dodge_upvr:FireServer()
+			local BodyVelocity = Instance.new("BodyVelocity")
+			BodyVelocity.MaxForce = Vector3.new(100000, 0, 100000)
+			BodyVelocity.P = math.huge
+			BodyVelocity.Velocity = var68 * 50
+			BodyVelocity.Parent = Character_upvr.HumanoidRootPart
+			game.Debris:AddItem(BodyVelocity, 0.25)
+			wait(0.4)
+			var15_upvw = false
+			wait(3)
+			dodgecooldown = false -- Setting global
+		end
+	end
+	dashcooldown = false -- Setting global
+	local any_LoadAnimation_result1_upvr_12 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.Dash)
+	local Dash_upvr = Torso_upvr.Dash
+	function dash() -- Line 322
+		--[[ Upvalues[6]:
+			[1]: var15_upvw (read and write)
+			[2]: any_LoadAnimation_result1_upvr_12 (readonly)
+			[3]: Dash_upvr (readonly)
+			[4]: Dodge_upvr (readonly)
+			[5]: HumanoidRootPart_upvr_2 (readonly)
+			[6]: Character_upvr (readonly)
+		]]
+		if var15_upvw == true then
+		else
+			if dashcooldown == true then return end
+			var15_upvw = true
+			dashcooldown = true -- Setting global
+			any_LoadAnimation_result1_upvr_12:Play(0.1, 1, 1)
+			Dash_upvr:Play()
+			Dodge_upvr:FireServer()
+			local BodyVelocity_2 = Instance.new("BodyVelocity")
+			BodyVelocity_2.MaxForce = Vector3.new(100000, 100000, 100000)
+			BodyVelocity_2.P = math.huge
+			BodyVelocity_2.Velocity = HumanoidRootPart_upvr_2.CFrame.lookVector * 80 + Vector3.new(0, 3.5, 0)
+			BodyVelocity_2.Parent = Character_upvr.HumanoidRootPart
+			game.Debris:AddItem(BodyVelocity_2, 0.25)
+			wait(0.4)
+			any_LoadAnimation_result1_upvr_12:Stop()
+			var15_upvw = false
+			wait(3)
+			dashcooldown = false -- Setting global
+		end
+	end
+	local var77_upvw = false
+	function taunt() -- Line 343
+		--[[ Upvalues[3]:
+			[1]: var77_upvw (read and write)
+			[2]: Taunt_upvr (readonly)
+			[3]: Head_upvr (readonly)
+		]]
+		if var77_upvw == true then
+		else
+			var77_upvw = true
+			local randint_2 = math.random(1, 4)
+			if randint_2 == 1 then
+				Taunt_upvr:FireServer(Head_upvr, "rbxassetid://2553924562", 3, 1, 0)
+				return
+			end
+			if randint_2 == 2 then
+				Taunt_upvr:FireServer(Head_upvr, "rbxassetid://2553928874", 3, 2.355, 0)
+				return
+			end
+			if randint_2 == 3 then
+				Taunt_upvr:FireServer(Head_upvr, "rbxassetid://877367396", 3, 4.15, 0)
+				return
+			end
+			if randint_2 == 4 then
+				Taunt_upvr:FireServer(Head_upvr, "rbxassetid://3683393010", 3, 3.395, 0)
+			end
+		end
+	end
+	local var79_upvw = false
+	local any_LoadAnimation_result1_upvr_11 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.Pose1)
+	local any_LoadAnimation_result1_upvr_15 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.Pose2)
+	local Theme_upvr = Torso_upvr.Theme
+	local Menacing_upvr = ReplicatedStorage_upvr.Menacing
+	function posefunc() -- Line 358
+		--[[ Upvalues[8]:
+			[1]: var15_upvw (read and write)
+			[2]: var79_upvw (read and write)
+			[3]: any_LoadAnimation_result1_upvr_11 (readonly)
+			[4]: any_LoadAnimation_result1_upvr_15 (readonly)
+			[5]: Theme_upvr (readonly)
+			[6]: Humanoid_4_upvr (readonly)
+			[7]: Menacing_upvr (readonly)
+			[8]: Disabled_upvr (readonly)
+		]]
+		-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+		-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+		-- KONSTANTERROR: [3] 3. Error Block 2 start (CF ANALYSIS FAILED)
+		-- KONSTANTERROR: [3] 3. Error Block 2 end (CF ANALYSIS FAILED)
+		-- KONSTANTERROR: [9] 7. Error Block 22 start (CF ANALYSIS FAILED)
+		var15_upvw = true
+		var79_upvw = true
+		local randint = math.random(1, 2)
+		if randint == 1 then
+			any_LoadAnimation_result1_upvr_11:Play(0.1, 1, 1)
+		elseif randint == 2 then
+			any_LoadAnimation_result1_upvr_15:Play(0.1, 1, 1)
+		end
+		Theme_upvr:Play()
+		Humanoid_4_upvr.WalkSpeed = 0
+		Humanoid_4_upvr.JumpPower = 0
+		Menacing_upvr:FireServer(true)
+		do
+			return
+		end
+		-- KONSTANTERROR: [9] 7. Error Block 22 end (CF ANALYSIS FAILED)
+		-- KONSTANTERROR: [55] 44. Error Block 24 start (CF ANALYSIS FAILED)
+		if var79_upvw == true then
+			Theme_upvr:Stop()
+			any_LoadAnimation_result1_upvr_11:Stop(0.3)
+			any_LoadAnimation_result1_upvr_15:Stop(0.3)
+			if Disabled_upvr.Value == false then
+				Humanoid_4_upvr.WalkSpeed = 16
+				Humanoid_4_upvr.JumpPower = 50
+			elseif Disabled_upvr.Value == true then
+				Humanoid_4_upvr.WalkSpeed = 4
+				Humanoid_4_upvr.JumpPower = 10
+			end
+			var15_upvw = false
+			var79_upvw = false
+			Menacing_upvr:FireServer(false)
+		end
+		-- KONSTANTERROR: [55] 44. Error Block 24 end (CF ANALYSIS FAILED)
+	end
+	local var85_upvw = false
+	local any_LoadAnimation_result1_upvr_6 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.SpaceRipper)
+	local StingyEyes_upvr = Torso_upvr.StingyEyes
+	function spaceripperstingyeyes() -- Line 392
+		--[[ Upvalues[5]:
+			[1]: var85_upvw (read and write)
+			[2]: var15_upvw (read and write)
+			[3]: any_LoadAnimation_result1_upvr_6 (readonly)
+			[4]: StingyEyes_upvr (readonly)
+			[5]: ReplicatedStorage_upvr (readonly)
+		]]
+		if var85_upvw == true then
+		else
+			if var15_upvw == true then return end
+			var15_upvw = true
+			var85_upvw = true
+			any_LoadAnimation_result1_upvr_6:Play(0.1, 1, 1)
+			wait(0.6)
+			StingyEyes_upvr:Play()
+			ReplicatedStorage_upvr.Projectile:FireServer("SpaceRipper")
+			wait(0.3)
+			var15_upvw = false
+			wait(7.5)
+			var85_upvw = false
+		end
+	end
+	mouse.Button1Down:connect(function() -- Line 406
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			punch()
+		end
+	end)
+	mouse.KeyDown:connect(function(arg1) -- Line 411
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			if arg1 == 'r' then
+				strongpunch()
+			end
+			if arg1 == 'e' then
+				barrage()
+			end
+			if arg1 == 't' then
+				spaceripperstingyeyes()
+			end
+			if arg1 == 'y' then
+				bloodsuck()
+			end
+			if arg1 == 'z' then
+				movement()
+			end
+			if arg1 == 'f' then
+				freeze()
+			end
+			if arg1 == 'p' then
+				posefunc()
+			end
+			if arg1 == 'x' then
+				block()
+			end
+			if arg1 == 'v' then
+				dash()
+			end
+			if arg1 == 'c' then
+				dodge()
+			end
+			if arg1 == 'n' then
+				taunt()
+			end
+		end
+	end)
+	MobileStuff_upvr.Pose.MouseButton1Click:Connect(function() -- Line 448
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			posefunc()
+		end
+	end)
+	MobileStuff_upvr.Taunt.MouseButton1Click:Connect(function() -- Line 453
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			taunt()
+		end
+	end)
+	MobileStuff_upvr.M1.MouseButton1Click:Connect(function() -- Line 458
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			punch()
+		end
+	end)
+	MobileStuff_upvr.E.MouseButton1Click:Connect(function() -- Line 463
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			barrage()
+		end
+	end)
+	MobileStuff_upvr.R.MouseButton1Click:Connect(function() -- Line 468
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			strongpunch()
+		end
+	end)
+	MobileStuff_upvr.T.MouseButton1Click:Connect(function() -- Line 473
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			spaceripperstingyeyes()
+		end
+	end)
+	MobileStuff_upvr.Y.MouseButton1Click:Connect(function() -- Line 478
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			bloodsuck()
+		end
+	end)
+	MobileStuff_upvr.F.MouseButton1Click:Connect(function() -- Line 483
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			freeze()
+		end
+	end)
+	MobileStuff_upvr.Z.MouseButton1Click:Connect(function() -- Line 488
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			movement()
+		end
+	end)
+	MobileStuff_upvr.X.MouseButton1Click:Connect(function() -- Line 493
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			block()
+		end
+	end)
+	MobileStuff_upvr.C.MouseButton1Click:Connect(function() -- Line 498
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			dodge()
+		end
+	end)
+	MobileStuff_upvr.V.MouseButton1Click:Connect(function() -- Line 503
+		--[[ Upvalues[2]:
+			[1]: Torso_upvr (readonly)
+			[2]: Disabled_upvr (readonly)
+		]]
+		if Torso_upvr.Anchored == true then
+		else
+			if Disabled_upvr.Value == true then return end
+			dash()
+		end
+	end)
+	function hito(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13) -- Line 508
+		--[[ Upvalues[2]:
+			[1]: Character_upvr (readonly)
+			[2]: Damage_upvr (readonly)
+		]]
+		for _, v in pairs(workspace:GetChildren()) do
+			if arg1.Anchored == true then return end
+			if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v ~= Character_upvr and (v:FindFirstChild("HumanoidRootPart").Position - arg1.Position).magnitude < arg3 and v:FindFirstChild("HumanoidRootPart"):FindFirstChild("alabo") == nil then
+				if arg1.Anchored then return end
+				Damage_upvr:FireServer(v:FindFirstChild("Humanoid"), arg2, arg4, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13)
+				local StringValue_2 = Instance.new("StringValue", v:FindFirstChild("HumanoidRootPart"))
+				StringValue_2.Name = "alabo"
+				game.Debris:AddItem(StringValue_2, arg5)
+			end
+		end
+	end
+	local VampireRush_upvr = ReplicatedStorage_upvr.VampireRush
+	function hito2(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13) -- Line 525
+		--[[ Upvalues[2]:
+			[1]: Character_upvr (readonly)
+			[2]: VampireRush_upvr (readonly)
+		]]
+		for _, v_2 in pairs(workspace:GetChildren()) do
+			if arg1.Anchored == true then return end
+			if v_2:FindFirstChild("Humanoid") and v_2:FindFirstChild("HumanoidRootPart") and v_2 ~= Character_upvr and (v_2:FindFirstChild("HumanoidRootPart").Position - arg1.Position).magnitude < arg3 and v_2:FindFirstChild("HumanoidRootPart"):FindFirstChild("alabo") == nil then
+				if arg1.Anchored then return end
+				VampireRush_upvr:FireServer(v_2:FindFirstChild("Humanoid"), arg2, arg4, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13)
+				local StringValue = Instance.new("StringValue", v_2:FindFirstChild("HumanoidRootPart"))
+				StringValue.Name = "alabo"
+				game.Debris:AddItem(StringValue, arg5)
+			end
+		end
+	end
+	function hito3(arg1, arg2, arg3, arg4, arg5, arg6, arg7) -- Line 542
+		--[[ Upvalues[3]:
+			[1]: Character_upvr (readonly)
+			[2]: VampireDamage_upvr (readonly)
+			[3]: Knock_upvr (readonly)
+		]]
+		for _, v_3 in pairs(workspace:GetChildren()) do
+			if arg1.Anchored == true then return end
+			if v_3:FindFirstChild("Humanoid") and v_3:FindFirstChild("HumanoidRootPart") and v_3 ~= Character_upvr and (v_3:FindFirstChild("HumanoidRootPart").Position - arg1.Position).magnitude < arg2 and v_3:FindFirstChild("HumanoidRootPart"):FindFirstChild("alabo") == nil then
+				if arg1.Anchored then return end
+				local Humanoid_3 = v_3:FindFirstChild("Humanoid")
+				VampireDamage_upvr:FireServer(Humanoid_3, arg3, arg5, arg6, arg7)
+				Knock_upvr:FireServer(Humanoid_3)
+				local StringValue_7 = Instance.new("StringValue", v_3:FindFirstChild("HumanoidRootPart"))
+				StringValue_7.Name = "alabo"
+				game.Debris:AddItem(StringValue_7, arg4)
+			end
+		end
+	end
+	function hito4(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) -- Line 560
+		--[[ Upvalues[3]:
+			[1]: Character_upvr (readonly)
+			[2]: VampireFreeze_upvr (readonly)
+			[3]: Knock_upvr (readonly)
+		]]
+		for _, v_4 in pairs(workspace:GetChildren()) do
+			if arg1.Anchored == true then return end
+			if v_4:FindFirstChild("Humanoid") and v_4:FindFirstChild("HumanoidRootPart") and v_4 ~= Character_upvr and (v_4:FindFirstChild("HumanoidRootPart").Position - arg1.Position).magnitude < arg3 and v_4:FindFirstChild("HumanoidRootPart"):FindFirstChild("alabo") == nil then
+				if arg1.Anchored then return end
+				local Humanoid = v_4:FindFirstChild("Humanoid")
+				VampireFreeze_upvr:FireServer("sigmaphonkskibidiVampireFreeze20230450428:3", Humanoid, arg2, arg4, arg6, arg7, arg8)
+				local StringValue_6 = Instance.new("StringValue", v_4:FindFirstChild("HumanoidRootPart"))
+				StringValue_6.Name = "alabo"
+				game.Debris:AddItem(StringValue_6, arg5)
+				wait(1)
+				Knock_upvr:FireServer(Humanoid)
+			end
+		end
+	end
+	function hito5(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13) -- Line 579
+		--[[ Upvalues[3]:
+			[1]: Character_upvr (readonly)
+			[2]: Damage_upvr (readonly)
+			[3]: Knock_upvr (readonly)
+		]]
+		for _, v_5 in pairs(workspace:GetChildren()) do
+			if arg1.Anchored == true then return end
+			if v_5:FindFirstChild("Humanoid") and v_5:FindFirstChild("HumanoidRootPart") and v_5 ~= Character_upvr and (v_5:FindFirstChild("HumanoidRootPart").Position - arg1.Position).magnitude < arg3 and v_5:FindFirstChild("HumanoidRootPart"):FindFirstChild("alabo") == nil then
+				if arg1.Anchored then return end
+				local Humanoid_2 = v_5:FindFirstChild("Humanoid")
+				Damage_upvr:FireServer(Humanoid_2, arg2, arg4, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13)
+				Knock_upvr:FireServer(Humanoid_2)
+				local StringValue_5 = Instance.new("StringValue", v_5:FindFirstChild("HumanoidRootPart"))
+				StringValue_5.Name = "alabo"
+				game.Debris:AddItem(StringValue_5, arg5)
+			end
+		end
+	end
+	game.Lighting.TS.Changed:Connect(function() -- Line 598
+		--[[ Upvalues[7]:
+			[1]: Anchor_upvr (readonly)
+			[2]: Torso_upvr (readonly)
+			[3]: Right_Arm_upvr (readonly)
+			[4]: Left_Arm_upvr (readonly)
+			[5]: Right_Leg_upvr (readonly)
+			[6]: Left_Leg_upvr (readonly)
+			[7]: Head_upvr (readonly)
+		]]
+		if game.Lighting.TS.Value == true then
+			Anchor_upvr:FireServer(Torso_upvr, true)
+			Anchor_upvr:FireServer(Right_Arm_upvr, true)
+			Anchor_upvr:FireServer(Left_Arm_upvr, true)
+			Anchor_upvr:FireServer(Right_Leg_upvr, true)
+			Anchor_upvr:FireServer(Left_Leg_upvr, true)
+			Anchor_upvr:FireServer(Head_upvr, true)
+		elseif game.Lighting.TS.Value == false then
+			Anchor_upvr:FireServer(Torso_upvr, false)
+			Anchor_upvr:FireServer(Right_Arm_upvr, false)
+			Anchor_upvr:FireServer(Left_Arm_upvr, false)
+			Anchor_upvr:FireServer(Right_Leg_upvr, false)
+			Anchor_upvr:FireServer(Left_Leg_upvr, false)
+			Anchor_upvr:FireServer(Head_upvr, false)
+		end
+	end)
+	if game.Lighting.TS.Value == true then
+		Anchor_upvr:FireServer(Torso_upvr, true)
+		Anchor_upvr:FireServer(Right_Arm_upvr, true)
+		Anchor_upvr:FireServer(Left_Arm_upvr, true)
+		Anchor_upvr:FireServer(Right_Leg_upvr, true)
+		Anchor_upvr:FireServer(Left_Leg_upvr, true)
+		Anchor_upvr:FireServer(Head_upvr, true)
+	end
+	game.Lighting.MC.Changed:Connect(function() -- Line 626
+		--[[ Upvalues[8]:
+			[1]: LocalPlayer_upvr (readonly)
+			[2]: Anchor_upvr (readonly)
+			[3]: Torso_upvr (readonly)
+			[4]: Right_Arm_upvr (readonly)
+			[5]: Left_Arm_upvr (readonly)
+			[6]: Right_Leg_upvr (readonly)
+			[7]: Left_Leg_upvr (readonly)
+			[8]: Head_upvr (readonly)
+		]]
+		if game.Lighting.MC.Value == true then
+			LocalPlayer_upvr.PlayerGui:WaitForChild("Mindcrash").Enabled = true
+			Anchor_upvr:FireServer(Torso_upvr, true)
+			Anchor_upvr:FireServer(Right_Arm_upvr, true)
+			Anchor_upvr:FireServer(Left_Arm_upvr, true)
+			Anchor_upvr:FireServer(Right_Leg_upvr, true)
+			Anchor_upvr:FireServer(Left_Leg_upvr, true)
+			Anchor_upvr:FireServer(Head_upvr, true)
+		elseif game.Lighting.MC.Value == false then
+			LocalPlayer_upvr.PlayerGui:WaitForChild("Mindcrash").Enabled = false
+			Anchor_upvr:FireServer(Torso_upvr, false)
+			Anchor_upvr:FireServer(Right_Arm_upvr, false)
+			Anchor_upvr:FireServer(Left_Arm_upvr, false)
+			Anchor_upvr:FireServer(Right_Leg_upvr, false)
+			Anchor_upvr:FireServer(Left_Leg_upvr, false)
+			Anchor_upvr:FireServer(Head_upvr, false)
+		end
+	end)
+	if game.Lighting.MC.Value == true then
+		LocalPlayer_upvr.PlayerGui:WaitForChild("Mindcrash").Enabled = true
+		Anchor_upvr:FireServer(Torso_upvr, true)
+		Anchor_upvr:FireServer(Right_Arm_upvr, true)
+		Anchor_upvr:FireServer(Left_Arm_upvr, true)
+		Anchor_upvr:FireServer(Right_Leg_upvr, true)
+		Anchor_upvr:FireServer(Left_Leg_upvr, true)
+		Anchor_upvr:FireServer(Head_upvr, true)
+	end
+	ReplicatedStorage_upvr.BerserkClient.OnClientEvent:connect(function() -- Line 660
+		--[[ Upvalues[1]:
+			[1]: Humanoid_4_upvr (readonly)
+		]]
+		game.Lighting.Ambient = Color3.fromRGB(0, 0, 122)
+		game.Lighting.Berserk.Enabled = true
+		Humanoid_4_upvr.WalkSpeed = 4
+		Humanoid_4_upvr:SetStateEnabled(3, false)
+		wait(2.5)
+		Humanoid_4_upvr.WalkSpeed = 16
+		Humanoid_4_upvr:SetStateEnabled(3, true)
+		game.Lighting.Ambient = Color3.fromRGB(110, 120, 124)
+		game.Lighting.Berserk.Enabled = false
+	end)
+	local Death_upvr = ReplicatedStorage_upvr.Death
+	Humanoid_4_upvr.HealthChanged:connect(function() -- Line 673
+		--[[ Upvalues[3]:
+			[1]: Humanoid_4_upvr (readonly)
+			[2]: LocalPlayer_upvr (readonly)
+			[3]: Death_upvr (readonly)
+		]]
+		if Humanoid_4_upvr.Health < 1 then
+			LocalPlayer_upvr.PlayerGui:WaitForChild("DeathGUI").Enabled = true
+			Humanoid_4_upvr:SetStateEnabled(3, false)
+			Humanoid_4_upvr:SetStateEnabled(15, false)
+			Death_upvr:FireServer(false)
+		end
+	end)
+	local Heal3_upvr = ReplicatedStorage_upvr.Heal3
+	function heal(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13) -- Line 682
+		--[[ Upvalues[4]:
+			[1]: Disabled_upvr (readonly)
+			[2]: Character_upvr (readonly)
+			[3]: Heal3_upvr (readonly)
+			[4]: Stand_upvr (readonly)
+		]]
+		if Disabled_upvr.Value == true then
+		else
+			for _, v_6 in pairs(workspace:GetChildren()) do
+				if arg1.Anchored == true then return end
+				if v_6:FindFirstChild("Humanoid") and v_6:FindFirstChild("HumanoidRootPart") and v_6 ~= Character_upvr and (v_6:FindFirstChild("HumanoidRootPart").Position - arg1.Position).magnitude < arg3 and v_6:FindFirstChild("HumanoidRootPart"):FindFirstChild("alabo") == nil then
+					if arg1.Anchored then return end
+					Heal3_upvr:FireServer(v_6:FindFirstChild("Humanoid"), arg2, arg4, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13)
+					local StringValue_3_upvr = Instance.new("StringValue", v_6:FindFirstChild("HumanoidRootPart"))
+					StringValue_3_upvr.Name = "alabo"
+					delay(arg5, function() -- Line 695
+						--[[ Upvalues[1]:
+							[1]: StringValue_3_upvr (readonly)
+						]]
+						StringValue_3_upvr:Destroy()
+					end)
+				end
+				StringValue_3_upvr = "Stand"
+				if v_6:FindFirstChild(StringValue_3_upvr) then
+					StringValue_3_upvr = "Stand Torso"
+					if v_6.Stand:FindFirstChild(StringValue_3_upvr) and v_6 ~= Character_upvr then
+						StringValue_3_upvr = Stand_upvr.Name
+						if v_6 ~= Character_upvr[StringValue_3_upvr] then
+							StringValue_3_upvr = v_6.Stand:FindFirstChild("Stand Torso").Position
+							if (StringValue_3_upvr - arg1.Position).magnitude < arg3 then
+								StringValue_3_upvr = "HumanoidRootPart"
+								StringValue_3_upvr = "alabo"
+								if v_6:FindFirstChild(StringValue_3_upvr):FindFirstChild(StringValue_3_upvr) == nil then
+									if arg1.Anchored then return end
+									StringValue_3_upvr = "Humanoid"
+									StringValue_3_upvr = Heal3_upvr:FireServer
+									StringValue_3_upvr(v_6:FindFirstChild(StringValue_3_upvr), arg2, arg4, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13)
+									StringValue_3_upvr = Instance.new("StringValue", v_6:FindFirstChild("HumanoidRootPart"))
+									local var158_upvr = StringValue_3_upvr
+									var158_upvr.Name = "alabo"
+									delay(arg5, function() -- Line 710
+										--[[ Upvalues[1]:
+											[1]: var158_upvr (readonly)
+										]]
+										var158_upvr:Destroy()
+									end)
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	local Knocked_upvr = ReplicatedStorage_upvr.Knocked
+	local GetUp_upvr = ReplicatedStorage_upvr.GetUp
+	ReplicatedStorage_upvr.KnockClient.OnClientEvent:connect(function(arg1) -- Line 719
+		--[[ Upvalues[3]:
+			[1]: Knocked_upvr (readonly)
+			[2]: Humanoid_4_upvr (readonly)
+			[3]: GetUp_upvr (readonly)
+		]]
+		Knocked_upvr:FireServer()
+		Humanoid_4_upvr:SetStateEnabled(3, false)
+		wait(1.25)
+		if 1 <= Humanoid_4_upvr.Health then
+			GetUp_upvr:FireServer()
+			Humanoid_4_upvr:SetStateEnabled(3, true)
+		end
+	end)
+	Taunt_upvr.OnClientEvent:Connect(function() -- Line 729
+		--[[ Upvalues[1]:
+			[1]: var77_upvw (read and write)
+		]]
+		var77_upvw = false
+	end)
+	local any_LoadAnimation_result1_upvr_5 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.Grab)
+	local Bloodsuck_upvr = Torso_upvr.Bloodsuck
+	VampireDamage_upvr.OnClientEvent:Connect(function() -- Line 733
+		--[[ Upvalues[7]:
+			[1]: any_LoadAnimation_result1_upvr_5 (readonly)
+			[2]: var16_upvw (read and write)
+			[3]: var15_upvw (read and write)
+			[4]: Bloodsuck_upvr (readonly)
+			[5]: Humanoid_4_upvr (readonly)
+			[6]: Trail_upvr (readonly)
+			[7]: Stand_upvr (readonly)
+		]]
+		any_LoadAnimation_result1_upvr_5:Play(0.1, 1, 1)
+		var16_upvw = true
+		var15_upvw = true
+		Bloodsuck_upvr:Play()
+		wait(2)
+		any_LoadAnimation_result1_upvr_5:Stop(0.2)
+		var15_upvw = false
+		Humanoid_4_upvr.JumpPower = 50
+		Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, false)
+		var16_upvw = false
+	end)
+	local any_LoadAnimation_result1_upvr_9 = Humanoid_4_upvr:LoadAnimation(Stand_upvr.IceShatter)
+	local Voice2_upvr = Torso_upvr.Voice2
+	VampireFreeze_upvr.OnClientEvent:Connect(function() -- Line 746
+		--[[ Upvalues[7]:
+			[1]: Humanoid_4_upvr (readonly)
+			[2]: var16_upvw (read and write)
+			[3]: any_LoadAnimation_result1_upvr_9 (readonly)
+			[4]: Voice2_upvr (readonly)
+			[5]: var15_upvw (read and write)
+			[6]: Trail_upvr (readonly)
+			[7]: Stand_upvr (readonly)
+		]]
+		Humanoid_4_upvr.WalkSpeed = 0
+		var16_upvw = true
+		wait(1)
+		any_LoadAnimation_result1_upvr_9:Play(0.1, 1, 1)
+		Voice2_upvr:Play()
+		wait(1)
+		Humanoid_4_upvr.WalkSpeed = 16
+		var15_upvw = false
+		Humanoid_4_upvr.JumpPower = 50
+		Trail_upvr:FireServer(Stand_upvr.StandRarm.Trail, false)
+		Trail_upvr:FireServer(Stand_upvr.StandLarm.Trail, false)
+		var16_upvw = false
+	end)
+	while wait() do
+		if Character_upvr:FindFirstChild("Vampiric").Value == false then
+			LocalPlayer_upvr:Kick("nice exploits, silly!!!")
+		end
+	end
+end
